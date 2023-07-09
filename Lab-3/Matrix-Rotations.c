@@ -146,6 +146,7 @@
 
 
 #include<stdio.h>
+#include<stdlib.h>
 void rotate(int n,int a[n][n],int t) {
     for(int k=0;k<t;k++) {
         for(int i=0;i<n/2;i++) {
@@ -170,19 +171,19 @@ int main() {
     scanf("\n");
     while(1) {
         char c;
-        scanf("\n%c",&c);
-        if(c==65) {
+        scanf("%c",&c);
+        if(c=='A') {
             int rot;
-            scanf("%d",&rot);
-            totalr+=(rot/90);
-            rotate(n,a,rot/90);
+            scanf("%d\n",&rot);
+            totalr+=(rot/90)%4;
+            rotate(n,a,(rot/90)%4);
         }
-        else if(c==81) {
+        else if(c=='Q') {
             int r,c;
             scanf("%d%d\n",&r,&c);
             printf("%d\n",a[r-1][c-1]);
         }
-        else if(c==85) {
+        else if(c=='U') {
             int r,c,no;
             scanf("%d%d%d\n",&r,&c,&no);
             a[r][c]=no;
