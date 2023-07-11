@@ -116,7 +116,7 @@ int main() {
         for(int i=0;i<n;i++) {
             for(int j=0;j<i;j++) printf("**");
             for(int j=0;j<n-i;j++,left++) printf("%d",left*10);
-            for(int j=0;j<n-i;j++,right++) (j+1==n-i) ? printf("%d",right): printf("%d",right*10);
+            for(int j=0;j<n-i;j++,right++) printf("%d",right*((j+1==n-i) ?1:10));
             right=right-(n-1-i)*2-1;
             printf("\n");
         }
