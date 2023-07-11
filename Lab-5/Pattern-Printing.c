@@ -108,23 +108,15 @@
 int main() {
     int tc;
     scanf("%d",&tc);
-    int counter=1;
-    while(tc--) {
+    for(int test=1;test<=tc;) {
         int n;
         scanf("%d",&n);
-        int total=n*(n+1)/2;
-        int left=0,right=total*2-n+1;
-            printf("Case #%d\n",counter++);
+        int total=n*(n+1)/2,left=1,right=total*2-n+1;
+        printf("Case #%d\n",test++);
         for(int i=0;i<n;i++) {
             for(int j=0;j<i;j++) printf("**");
-            for(int j=0;j<n-i;j++) {
-                left++;
-                printf("%d",left*10);
-            }
-            for(int j=0;j<n-i;j++) {
-                (j+1==n-i) ? printf("%d",right): printf("%d",right*10);
-                right++;
-            }
+            for(int j=0;j<n-i;j++,left++) printf("%d",left*10);
+            for(int j=0;j<n-i;j++,right++) (j+1==n-i) ? printf("%d",right): printf("%d",right*10);
             right=right-(n-1-i)*2-1;
             printf("\n");
         }
