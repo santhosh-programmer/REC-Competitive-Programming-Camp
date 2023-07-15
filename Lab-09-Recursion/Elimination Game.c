@@ -53,37 +53,12 @@
 
 
 #include<stdio.h>
-
-void find(int n, int a[n], int isAlive[n], int curr, int aliveCount) {
-    if(aliveCount==1) printf("%d",a[1]);
-    else {
-        int temp[n+1],tempIsAlive[n+1];
-        if(curr%2==1) {
-           int x=2;
-           for(int i=1;i<=n;i++,x+=2) {
-               temp[i]=a[x];
-               tempIsAlive[i]=1;
-           }
-            find((n%2==0) ? n/2 : (n/2)+1,temp,tempIsAlive,curr+1,n);
-        }
-        else {
-           int x=1;
-           for(int i=1;i<=n;i++,x+=2) {
-               temp[i]=a[x];
-               tempIsAlive[i]=1;
-           }
-           find(n/2,temp,tempIsAlive,curr+1,n);
-        }
-    }
+#include<math.h>
+int find(int curr, int l, int n)  {
+    if(n==1) return l;
+    else if(curr%2==0  && n%2==0) return find(curr+1,l,n/2);
+    else return find(curr+1,l+pow(2,curr-1),n/2);
 }
-
-int main() {
-    int n;
-    scanf("%d",&n);
-    int a[n+1],isAlive[n+1];
-    for(int i=1;i<=n;i++) {
-        a[i]=i;
-        isAlive[i]=1;
-    }
-    find(n/2,a,isAlive,1,n);
+int lastRemaining(int n) {
+    printf("%d",find(1,1,n));
 }
