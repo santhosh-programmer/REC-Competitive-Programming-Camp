@@ -54,39 +54,36 @@
 
 #include<stdio.h>
 
-void find(long int n, long int a[n], long int isAlive[n], long int curr, long int aliveCount) {
-    if(aliveCount==1) {
-        printf("%ld",a[1]);
-    }
+void find(int n, int a[n], int isAlive[n], int curr, int aliveCount) {
+    if(aliveCount==1) printf("%d",a[1]);
     else {
-           long int temp[n+1],tempIsAlive[n+1];
+        int temp[n+1],tempIsAlive[n+1];
         if(curr%2==1) {
-           long int x=2;
-           for(long int i=1;i<=n;i++,x+=2) {
+           int x=2;
+           for(int i=1;i<=n;i++,x+=2) {
                temp[i]=a[x];
                tempIsAlive[i]=1;
            }
-        find(n/2,temp,tempIsAlive,curr+1,(aliveCount/2));
+            find((n%2==0) ? n/2 : (n/2)+1,temp,tempIsAlive,curr+1,n);
         }
         else {
-           long int x=1;
-           for(long int i=1;i<=n;i++,x+=2) {
+           int x=1;
+           for(int i=1;i<=n;i++,x+=2) {
                temp[i]=a[x];
                tempIsAlive[i]=1;
            }
-        find((n/2)+1,temp,tempIsAlive,curr+1,(aliveCount/2)+1);
+           find(n/2,temp,tempIsAlive,curr+1,n);
         }
     }
 }
 
 int main() {
-    long int n;
-    scanf("%ld",&n);
-    long int a[n+1],isAlive[n+1];
-    for(long int i=1;i<=n;i++) {
+    int n;
+    scanf("%d",&n);
+    int a[n+1],isAlive[n+1];
+    for(int i=1;i<=n;i++) {
         a[i]=i;
         isAlive[i]=1;
     }
-    if(n==1) printf("1");
-    else find(n/2,a,isAlive,1,n);
+    find(n/2,a,isAlive,1,n);
 }
