@@ -59,6 +59,8 @@ int find(int curr, int l, int n)  {
     else if(curr%2==0  && n%2==0) return find(curr+1,l,n/2);
     else return find(curr+1,l+pow(2,curr-1),n/2);
 }
-int lastRemaining(int n) {
+int main() {
+    int n;
+    scanf("%d",&n);
     printf("%d",find(1,1,n));
 }
