@@ -25,7 +25,7 @@ int find(int n,int a[n][n],int x,int y,int ans[n][n]) {
     for(int i=y;i<n;i++) {
         if(a[x][i]) {
             if(x+1==n && i+1==n) {
-                for(int k=y;k<n;k++) ans[x][k]=1;
+                ans[x][y]=1;
                 return 1;
             }
             if(x+1!=n && a[x+1][i] && find(n,a,x+1,i,ans)) {
