@@ -149,3 +149,42 @@ int main() {
     }
     printf("true");
 }
+
+
+// UPDATED CODE WITH ERRORS FIXED
+
+bool isValidSudoku(char** board, int boardSize, int* boardColSize){
+    int n=9;
+    for(int i=0;i<n;i++) {
+        int temp[10]={};
+        for(int j=0;j<n;j++) {
+            if(board[i][j]!='.') {
+                if( temp[(int)board[i][j]-48]!=0) return false;
+                else temp[(int)board[i][j] -48 ]=1;
+            }
+        }
+    }
+    for(int i=0;i<n;i++) {
+        int temp[10]={};
+        for(int j=0;j<n;j++) {
+            if(board[j][i]!='.') {
+                if( temp[(int)board[j][i]-48]!=0) return false;
+                else temp[(int)board[j][i] -48 ]=1;
+            }
+        }
+    }
+    for(int x=0;x<9;x+=3) {
+        for(int y=0;y<9;y+=3) {
+            int temp[10]={};
+            for(int i=x;i<x+3;i++) {
+                for(int j=y;j<y+3;j++) {
+                    if(board[i][j]!='.') {
+                        if(temp[ (int) board[i][j] -48 ]!=0) return false;
+                        else temp[ (int) board[i][j] -48 ]=1;
+                    }
+                }
+            }
+        }
+    }
+    return true;
+}
